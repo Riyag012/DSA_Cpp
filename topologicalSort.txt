@@ -1,0 +1,38 @@
+**Topological Sort** is an ordering of the vertices (nodes) in a **directed acyclic graph (DAG)** such that for every directed edge `u -> v`, vertex `u` comes before vertex `v` in the ordering. It essentially provides a linear sequence of nodes that respects the dependencies represented by the edges.
+
+### Key points:
+- **Directed Acyclic Graph (DAG)**: Topological sorting only works on a directed graph that has no cycles (hence, acyclic). If there is a cycle, it's impossible to perform a topological sort.
+- **Dependency Resolution**: It is often used in situations where some tasks depend on other tasks (like scheduling tasks, course prerequisites, build systems, etc.).
+  
+### Example:
+Consider a directed graph with the following edges:
+- 5 → 0
+- 5 → 2
+- 4 → 0
+- 4 → 1
+- 2 → 3
+- 3 → 1
+
+A valid topological sort would be:
+```
+5, 4, 2, 3, 1, 0
+```
+This means:
+- Task 5 must be completed before tasks 0 and 2.
+- Task 2 must be completed before task 3, and so on.
+
+### Algorithms to find Topological Sort:
+1. **Kahn's Algorithm (BFS-based)**:
+   - It uses an in-degree array (number of incoming edges for each node) and a queue.
+   - Nodes with 0 in-degree (no dependencies) are added to the queue.
+   - Process nodes one by one and reduce the in-degree of their neighbors, eventually forming a topological order.
+
+2. **DFS-based Algorithm**:
+   - Perform a depth-first search on the graph.
+   - Nodes are added to the result stack only after all their descendants are visited.
+   - Reverse the stack at the end to get the topological sort.
+
+### Real-world applications:
+- **Course prerequisite scheduling**: If some courses depend on others, topological sort helps determine the order in which to take courses.
+- **Build systems**: Dependencies between software components need to be resolved in a specific order to compile correctly.
+- **Task scheduling**: When certain tasks must be completed before others.

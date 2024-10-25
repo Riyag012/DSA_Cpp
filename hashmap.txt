@@ -1,0 +1,74 @@
+### 1. **Time Complexity of HashMap Operations**
+
+Assuming a **good hash function** (i.e., it uniformly distributes keys across the map) and using **closed addressing** (separate chaining) to handle collisions:
+
+- **Insertion**:
+  - **Best case**: **O(1)** (constant time). If there’s no collision, the key is hashed and directly stored at the calculated index.
+  - **Worst case**: **O(n)**, where `n` is the number of elements in the HashMap. This happens when all keys hash to the same index, forming a long chain (e.g., if the hash function is poor).
+  - **Average case**: **O(1)** with a good hash function and low collision probability.
+
+- **Search (Lookup)**:
+  - **Best case**: **O(1)** if there is no collision and the key is found at the hashed index directly.
+  - **Worst case**: **O(n)** if all keys hash to the same index and we have to search through the chain.
+  - **Average case**: **O(1)** with uniform distribution and a good hash function.
+
+- **Deletion**:
+  - **Best case**: **O(1)**, where the key is found directly without collisions.
+  - **Worst case**: **O(n)** if we have to search through a chain in case of many collisions.
+  - **Average case**: **O(1)** with proper distribution.
+
+---
+
+### 2. **Space Complexity of HashMap**
+
+- **Best case**: **O(n)**, where `n` is the number of elements. In this case, each element gets its own index without chaining.
+- **Worst case**: **O(n + m)**, where:
+  - `n` is the number of elements.
+  - `m` is the number of buckets (allocated space for the HashMap).
+  - In the worst case, many chains form, leading to a higher memory overhead due to the storage of linked lists at each index.
+
+---
+
+### 3. **Effect of Collisions on Time Complexity**
+
+When **collisions** happen, the time complexity can degrade, especially if many keys map to the same index:
+
+- **Without collisions**: Each operation (insertion, search, deletion) takes **O(1)** on average.
+- **With collisions**: If all keys collide and form a chain at a single index, the time complexity degrades to **O(n)** for that specific index. This happens in the worst-case scenario, where the hash function is poor, or the load factor is too high (too many elements relative to the size of the map).
+
+---
+
+### 4. **Load Factor and Rehashing**
+
+- **Load factor**: The ratio of the number of elements (`n`) to the number of buckets (`m`).
+  - Load factor = `n / m`
+  - A **high load factor** increases the chance of collisions, leading to longer chains and slower operations.
+  
+- **Rehashing**: When the load factor exceeds a certain threshold, the HashMap can **resize** (rehash). This involves:
+  - **Doubling the number of buckets** and reassigning keys to new buckets using a new hash function.
+  - **Time complexity of rehashing**: **O(n)**, since every element must be rehashed and moved to the new buckets.
+
+---
+
+### 5. **Complexity of Operations with Closed Addressing**
+
+In closed addressing, where collisions are handled using separate chaining, the time complexity for insertion, deletion, and search is influenced by the **load factor**:
+
+- **Average case**: **O(1 + α)**, where `α` is the **load factor**.
+  - When the load factor is small, operations are almost constant time.
+  - As `α` increases, the chances of collisions increase, making the operations slower (up to **O(n)** in the worst case).
+
+---
+
+### Summary of Time Complexities:
+
+| Operation  | Best Case | Worst Case | Average Case |
+|------------|-----------|------------|--------------|
+| Insertion  | O(1)      | O(n)       | O(1)         |
+| Search     | O(1)      | O(n)       | O(1)         |
+| Deletion   | O(1)      | O(n)       | O(1)         |
+
+- **Best case**: When there are no collisions.
+- **Worst case**: When all elements collide and form long chains.
+- **Average case**: Depends on the hash function and load factor, but generally O(1) for a well-balanced HashMap.
+
