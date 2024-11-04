@@ -1,0 +1,90 @@
+INSERTION SORT:
+Insertion sort is a simple sorting algorithm that builds a sorted array (or list) one item at a time by repeatedly picking an element from the unsorted portion and placing it in the correct position in the sorted portion. It’s efficient for small data sets or mostly sorted data but is less efficient on large, unsorted lists.
+
+### How it Works:
+1. Start with the second element in the list (assuming the first element is a sorted sublist of one element).
+2. Compare this element to the elements before it in the sorted portion.
+3. Shift each element that is larger than the element being sorted one position to the right.
+4. Insert the element in the correct position in the sorted portion.
+5. Move to the next element and repeat until the entire list is sorted.
+
+### Example:
+If the list is `[5, 2, 9, 1, 5, 6]`:
+1. Start with `2`, move it before `5`: `[2, 5, 9, 1, 5, 6]`.
+2. Move `9` (no change as it’s in the correct spot).
+3. Place `1` before `2`: `[1, 2, 5, 9, 5, 6]`.
+4. Place `5` before `9`: `[1, 2, 5, 5, 9, 6]`.
+5. Place `6` before `9`: `[1, 2, 5, 5, 6, 9]`.
+
+### Complexity:
+- **Time Complexity**: \(O(n^2)\) in the worst case (when the list is in reverse order) and \(O(n)\) in the best case (when the list is already sorted).
+- **Space Complexity**: \(O(1)\), as it sorts the list in place.
+
+This algorithm is particularly good for lists that are already partially sorted, as it only requires minimal comparisons in those cases.
+
+
+
+
+
+
+
+QUICK SORT:
+Quick sort is a fast, recursive sorting algorithm that uses a divide-and-conquer strategy. It works by selecting a "pivot" element from the list and partitioning the other elements into two subarrays: those less than the pivot and those greater than it. The pivot is then placed in its correct position, and this process is repeated recursively for each subarray. 
+
+### How it Works:
+1. **Choose a Pivot**: Select an element as the pivot (often the last element, first element, or middle element).
+2. **Partitioning**: Rearrange elements in the list so that:
+   - Elements less than the pivot come before it.
+   - Elements greater than the pivot come after it.
+   - The pivot is now in its correct position.
+3. **Recursively Apply**: Apply the same steps to the left and right subarrays around the pivot.
+
+This partitioning and sorting process continues until each subarray contains only one element, at which point the list is fully sorted.
+
+### Example:
+For the list `[10, 7, 8, 9, 1, 5]`, if we choose `5` as the pivot:
+1. Partition the list so that elements less than `5` are on the left and greater than `5` are on the right: `[1, 5, 8, 9, 10, 7]`.
+2. Place `5` in its correct sorted position.
+3. Recursively apply quick sort to the subarrays `[1]` and `[8, 9, 10, 7]`.
+4. Continue until the list is sorted as `[1, 5, 7, 8, 9, 10]`.
+
+### Complexity:
+- **Time Complexity**: 
+  - Average case: \(O(n \log n)\)
+  - Worst case: \(O(n^2)\), which occurs when the pivot chosen is always the smallest or largest element (as in a sorted list).
+- **Space Complexity**: \(O(\log n)\) for the recursion stack in the average case.
+
+### Benefits:
+- Quick sort is generally faster in practice than other \(O(n \log n)\) algorithms, like merge sort, due to fewer memory accesses and cache-friendly nature.
+- It’s often the sorting method of choice for large datasets.
+
+
+
+
+MERGE SORT:
+Merge sort is a stable, comparison-based sorting algorithm that also uses a divide-and-conquer approach. It recursively divides the list into two halves, sorts each half, and then merges them back together in sorted order. This algorithm is especially useful for sorting large lists because of its consistent \(O(n \log n)\) time complexity.
+
+### How it Works:
+1. **Divide**: Recursively split the list in half until each sublist has only one element (which is inherently sorted).
+2. **Conquer**: Recursively sort each half.
+3. **Merge**: Combine (merge) the two sorted halves into a single sorted list.
+
+During the merge step, elements from each sublist are compared one by one, and the smallest element is added to the sorted list until all elements are merged.
+
+Let's use the list [38, 27, 43, 3, 9, 82, 10] again:
+
+Divide: Keep splitting the list in half until each sublist has only one element.
+
+First split: [38, 27, 43] and [3, 9, 82, 10]
+Second split: [38], [27, 43] and [3, 9], [82, 10]
+Third split: [38], [27], [43], [3], [9], [82], [10]
+Now we have seven individual elements: [38], [27], [43], [3], [9], [82], [10].
+
+Merge: Begin merging each pair of single-element lists back together in sorted order.
+
+First merge: [27, 38] and [3, 9], and [10, 82]
+Then merge the remaining single-element list with its neighbor: [27, 38, 43] and [3, 9, 10, 82]
+Final Merge: Combine the two larger sorted lists:
+
+[3, 9, 10, 27, 38, 43, 82]
+So the list is fully sorted as [3, 9, 10, 27, 38, 43, 82].
