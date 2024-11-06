@@ -1,3 +1,26 @@
+
+        /*
+        the * is the dereference operator. Here’s what it’s doing:
+            st.begin() returns an iterator pointing to the first element in the set st.
+            This iterator is not the element itself but a pointer-like object pointing to the element.
+            * (dereference operator) accesses the value at the iterator's position, which is the actual element
+            (a pair<int, int> in this case) stored in the set.
+            So *(st.begin()) gets the first (smallest) element in the set by dereferencing the iterator returned by 
+            st.begin() and stores it in top, which will hold the pair {nodeDistance, topNode}.
+        */
+
+       /*
+       
+       Actually, in this case, `top` is not an `int`; it’s a `std::pair<int, int>`, since `st` is a set of pairs:
+        set<pair<int, int>> st; 
+
+        The smallest element in `st` is a pair representing `{nodeDistance, topNode}`, not a single integer.
+        So you would need to declare `top` with the full type if you don’t use `auto`:
+        std::pair<int, int> top = *(st.begin());
+        Using `auto` here simplifies the syntax without losing clarity, especially when working with
+        data structures that use nested types like `std::pair` or iterators.
+
+       */
 #include <bits/stdc++.h> 
 
 using namespace std;
