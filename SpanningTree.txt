@@ -1,0 +1,74 @@
+SPANNING TREE:
+A spanning tree of a graph is a subgraph that includes all the vertices of the original graph but only enough
+edges to form a tree. Here’s what this means in detail:
+
+1. Covers All Vertices: A spanning tree contains every vertex from the original graph.
+2. Minimizes Edges: It has exactly \(V - 1\) edges, where \(V\) is the number of vertices. 
+This is the minimum number of edges required to connect all vertices.
+3. No Cycles: Because it’s a tree, a spanning tree has no cycles.
+4. Single Connected Component: It ensures there’s a path between any two vertices, meaning it’s a connected 
+structure.
+
+For weighted graphs, the goal is often to find a Minimum Spanning Tree (MST), which is a spanning tree with the
+minimum possible total edge weight. Algorithms like **Kruskal's** and **Prim's** are commonly used to find MSTs 
+in weighted graphs. 
+
+### Example
+If you have a simple graph:
+```
+     A---B
+     |   |
+     C---D
+```
+One possible spanning tree could be:
+```
+     A---B
+     |
+     C---D
+```
+This subgraph includes all vertices, connects them all with minimal edges, and has no cycles.
+
+
+
+
+
+
+MINIMUM SPANNING TREE:
+A Minimum Spanning Tree (MST) of a weighted, connected graph is a spanning tree that connects all the vertices 
+with the minimum possible total edge weight. Here’s a breakdown of what this means:
+
+1. Includes All Vertices: The MST includes every vertex from the original graph.
+2. Minimum Edge Weight: Among all possible spanning trees, the MST has the smallest sum of edge weights.
+3. No Cycles: Like any tree, an MST has no cycles.
+4. Exactly \( V - 1 \) Edges: For a graph with \( V \) vertices, the MST contains \( V - 1 \) edges.
+
+### Applications of MSTs
+- Network Design: MSTs help design cost-efficient networks (e.g., laying cables for internet or phone lines) 
+by minimizing the amount of cable needed while still connecting all nodes.
+- Clustering: MSTs can help divide data into clusters by removing the longest edges in the MST.
+- Approximation Algorithms: MSTs serve as a basis for approximation algorithms for NP-hard problems like the 
+Traveling Salesman Problem.
+
+### Algorithms to Find MST
+- Kruskal’s Algorithm: Adds edges in order of increasing weight, skipping edges that would form a cycle.
+- Prim’s Algorithm: Builds the MST by starting from a single vertex and adding the minimum-weight edge 
+connecting a new vertex to the tree.
+
+### Example
+If you have a weighted graph:
+```
+     A---1---B
+    / |       |
+   4  3       2
+  /     \     |
+ C---5---D
+```
+A possible MST for this graph would be:
+```
+     A---1---B
+    /
+   4 
+  /
+ C
+```
+with a total weight of `1 + 4 + 2 = 7`. This is the smallest possible total weight for a spanning tree of this graph.
